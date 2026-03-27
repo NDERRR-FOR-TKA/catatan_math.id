@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rumus Matematika SMP – TKA Kelas 7, 8, 9</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<style>
+:root {
+  --bg:       #050d1a;
+  --bg2:      #071224;
+  --glass:    rgba(7,20,45,0.55);
+  --glass2:   rgba(14,35,75,0.45);
+  --border:   rgba(56,189,248,0.18);
+  --border2:  rgba(56,189,248,0.32);
+  --accent:   #38bdf8;
+  --accent2:  #7dd3fc;
+  --accent3:  #0ea5e9;
+  --neon:     #00d4ff;
+  --neon2:    #60efff;
+  --text:     #e0f2fe;
+  --text2:    #bae6fd;
+  --muted:    #64748b;
+  --green:    #34d399;
+  --orange:   #fb923c;
+  --purple:   #a78bfa;
+  --pink:     #f472b6;
+  --gold:     #fbbf24;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden;line-height:1.7;}
+
+/* ── Deep space bg ── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 20%, rgba(14,60,120,0.5) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 80%, rgba(7,30,90,0.4) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(0,100,160,0.15) 0%, transparent 70%),
+    linear-gradient(160deg,#050d1a 0%,#071224 50%,#060e1e 100%);
+}
+
+/* ── Stars ── */
+#stars{position:fixed;inset:0;z-index:-1;pointer-events:none;}
+
+/* ── Glowing orbs ── */
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:-1;filter:blur(90px);opacity:0.22;animation:orbFloat var(--t,18s) ease-in-out infinite alternate;}
+.orb1{width:700px;height:700px;background:radial-gradient(circle,#0ea5e9,transparent 70%);top:-250px;left:-200px;--t:20s;}
+.orb2{width:500px;height:500px;background:radial-gradient(circle,#1d4ed8,transparent 70%);bottom:-150px;right:-150px;--t:25s;animation-delay:-12s;}
+.orb3{width:350px;height:350px;background:radial-gradient(circle,#0284c7,transparent 70%);top:40%;left:55%;--t:17s;animation-delay:-5s;}
+@keyframes orbFloat{to{transform:translate(50px,40px) scale(1.12);}}
+
+/* ── Scan line ── */
+.scan-line{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--neon),transparent);z-index:999;animation:scanDown 1.6s ease forwards;}
+@keyframes scanDown{to{top:100%;opacity:0;}}
+
+/* ── Progress bar ── */
+.progress-wrap{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(56,189,248,0.1);z-index:200;}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--accent3),var(--neon),var(--accent2));width:0%;transition:width 0.1s linear;box-shadow:0 0 10px var(--neon);}
+
+/* ── Music Player ── */
+#music-player{
+  position:fixed;bottom:1.5rem;left:1.5rem;z-index:500;
+  background:rgba(5,20,50,0.75);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--border2);border-radius:16px;
+  padding:0.7rem 1rem;display:flex;align-items:center;gap:0.75rem;
+  box-shadow:0 0 30px rgba(0,212,255,0.15);
+  transition:all 0.3s ease;
+  max-width:280px;
+}
+#music-player:hover{border-color:var(--neon);box-shadow:0 0 40px rgba(0,212,255,0.25);}
+.music-icon{font-size:1.3rem;animation:spinIcon 3s linear infinite;display:inline-block;}
+.music-icon.paused{animation-play-state:paused;}
+@keyframes spinIcon{to{transform:rotate(360deg);}}
+.music-info{flex:1;min-width:0;}
+.music-title{font-size:0.72rem;font-weight:700;color:var(--accent2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.music-artist{font-size:0.62rem;color:var(--muted);}
+.music-controls{display:flex;align-items:center;gap:0.4rem;}
+.music-btn{background:rgba(56,189,248,0.1);border:1px solid var(--border);color:var(--accent);font-size:0.75rem;width:28px;height:28px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.music-btn:hover{background:var(--accent);color:#000;}
+.vol-slider{width:55px;height:3px;accent-color:var(--accent);cursor:pointer;}
+.music-bars{display:flex;align-items:flex-end;gap:2px;height:16px;}
+.music-bars span{width:3px;background:var(--neon);border-radius:2px;animation:barAnim 0.6s ease infinite alternate;}
+.music-bars span:nth-child(1){height:6px;animation-delay:0s;}
+.music-bars span:nth-child(2){height:12px;animation-delay:0.15s;}
+.music-bars span:nth-child(3){height:8px;animation-delay:0.3s;}
+.music-bars span:nth-child(4){height:14px;animation-delay:0.1s;}
+.music-bars span:nth-child(5){height:5px;animation-delay:0.25s;}
+.music-bars.paused span{animation-play-state:paused;}
+@keyframes barAnim{to{height:4px;opacity:0.4;}}
+
+/* ── Scroll to top ── */
+#scrollTop{position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;border-radius:50%;background:rgba(14,165,233,0.15);border:1px solid var(--border2);cursor:pointer;z-index:100;color:var(--accent);font-size:1.1rem;backdrop-filter:blur(10px);opacity:0;transform:scale(0.6);transition:opacity 0.3s,transform 0.3s,background 0.2s;box-shadow:0 0 20px rgba(0,212,255,0.2);}
+#scrollTop.show{opacity:1;transform:scale(1);}
+#scrollTop:hover{background:var(--accent3);color:#fff;box-shadow:0 0 30px rgba(0,212,255,0.4);}
+
+/* ── HERO ── */
+.hero{position:relative;z-index:1;text-align:center;padding:6rem 2rem 3rem;}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(56,189,248,0.1);border:1px solid var(--border2);color:var(--accent2);font-size:0.68rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:0.4rem 1.2rem;border-radius:50px;margin-bottom:1.8rem;backdrop-filter:blur(10px);opacity:0;animation:fadeUp 0.7s 0.2s ease forwards;box-shadow:0 0 20px rgba(56,189,248,0.1);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,4.2rem);font-weight:800;line-height:1.08;margin-bottom:0.8rem;opacity:0;animation:fadeUp 0.8s 0.5s ease forwards;}
+.hero h1 .line1{display:block;color:var(--text);}
+.hero h1 .line2{display:block;background:linear-gradient(135deg,var(--neon),var(--accent2),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;}
+.hero-sub{color:var(--muted);font-size:0.95rem;max-width:480px;margin:0 auto 1.5rem;opacity:0;animation:fadeUp 0.7s 0.8s ease forwards;}
+.tw-wrap{min-height:1.6rem;margin-bottom:2.8rem;opacity:0;animation:fadeUp 0.7s 1s ease forwards;}
+.tw-text{font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--neon);font-weight:600;}
+.tw-text::after{content:'▌';animation:blink 0.65s step-end infinite;color:var(--accent2);}
+@keyframes blink{50%{opacity:0;}}
+
+/* ── NAV ── */
+.nav-wrap{position:sticky;top:0;z-index:100;padding:0.65rem 1.5rem;background:rgba(5,13,26,0.7);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border);opacity:0;animation:fadeUp 0.6s 1.3s ease forwards;}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;gap:0.4rem;flex-wrap:wrap;justify-content:center;}
+.nav-pill{background:transparent;border:1px solid rgba(56,189,248,0.15);color:var(--muted);font-size:0.72rem;font-weight:600;padding:0.28rem 0.8rem;border-radius:50px;cursor:pointer;text-decoration:none;transition:all 0.22s ease;white-space:nowrap;}
+.nav-pill:hover,.nav-pill.active{background:rgba(56,189,248,0.12);border-color:var(--accent);color:var(--accent);box-shadow:0 0 12px rgba(56,189,248,0.2);}
+
+/* ── Container ── */
+.container{max-width:1000px;margin:0 auto;padding:2rem 1.5rem 5rem;position:relative;z-index:1;}
+
+/* ── Chapter ── */
+.chapter{margin-bottom:4rem;opacity:0;transform:translateY(38px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.chapter.visible{opacity:1;transform:translateY(0);}
+.chapter-head{display:flex;align-items:center;gap:1.2rem;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.chapter-num{font-family:'JetBrains Mono',monospace;font-size:2.5rem;font-weight:600;color:rgba(56,189,248,0.18);min-width:3.2rem;line-height:1;}
+.chapter-title-wrap{}
+.chapter-klass{font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent3);margin-bottom:0.1rem;}
+.chapter-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--text);}
+
+/* ── Topic card ── */
+.topic-card{
+  background:var(--glass);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--border);
+  border-radius:16px;margin-bottom:1rem;overflow:hidden;
+  transition:border-color 0.3s,box-shadow 0.3s,transform 0.25s;
+}
+.topic-card:hover{border-color:var(--border2);box-shadow:0 4px 40px rgba(56,189,248,0.1);transform:translateY(-2px);}
+.topic-card.open{border-color:rgba(56,189,248,0.3);box-shadow:0 0 30px rgba(56,189,248,0.08);}
+.topic-header{padding:1rem 1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:0.8rem;user-select:none;}
+.topic-header h3{font-size:0.9rem;font-weight:700;color:var(--text2);display:flex;align-items:center;gap:0.65rem;}
+.topic-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;box-shadow:0 0 6px currentColor;}
+.topic-arrow{font-size:0.7rem;color:var(--muted);transition:transform 0.3s ease;}
+.topic-card.open .topic-arrow{transform:rotate(180deg);color:var(--accent);}
+.topic-body{max-height:0;overflow:hidden;transition:max-height 0.45s ease;}
+.topic-card.open .topic-body{max-height:9999px;}
+.topic-content{padding:0 1.4rem 1.5rem;border-top:1px solid rgba(56,189,248,0.1);}
+
+/* ── Formula box ── */
+.fbox{
+  background:rgba(14,165,233,0.07);
+  border:1px solid rgba(56,189,248,0.2);
+  border-left:3px solid var(--accent);
+  border-radius:0 10px 10px 0;
+  padding:0.85rem 1.1rem;margin:0.7rem 0;
+  font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--text2);
+  transition:border-color 0.2s,background 0.2s;
+}
+.fbox:hover{background:rgba(14,165,233,0.12);border-color:rgba(56,189,248,0.4);}
+.fbox.teal{border-left-color:#2dd4bf;background:rgba(45,212,191,0.06);}
+.fbox.orange{border-left-color:var(--orange);background:rgba(251,146,60,0.06);}
+.fbox.purple{border-left-color:var(--purple);background:rgba(167,139,250,0.06);}
+.fbox.gold{border-left-color:var(--gold);background:rgba(251,191,36,0.06);}
+.fbox.pink{border-left-color:var(--pink);background:rgba(244,114,182,0.06);}
+
+/* ── Rule list ── */
+.rl{list-style:none;padding:0;margin:0.6rem 0;}
+.rl li{padding:0.3rem 0 0.3rem 1.5rem;position:relative;font-size:0.87rem;color:var(--text2);}
+.rl li::before{content:'▹';position:absolute;left:0;color:var(--accent);top:0.38rem;font-size:0.8rem;}
+.rl li strong{color:var(--text);font-weight:700;}
+
+/* ── Bullet list ── */
+.bl{list-style:none;padding:0;margin:0.5rem 0;}
+.bl li{padding:0.22rem 0 0.22rem 1.2rem;position:relative;font-size:0.85rem;color:var(--text2);}
+.bl li::before{content:'◆';position:absolute;left:0;color:var(--accent3);font-size:0.55rem;top:0.5rem;}
+
+/* ── Section label ── */
+.slabel{font-size:0.67rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin:1.2rem 0 0.55rem;padding-bottom:0.3rem;border-bottom:1px solid rgba(56,189,248,0.12);}
+
+/* ── Table ── */
+.tbl{width:100%;border-collapse:collapse;font-size:0.82rem;margin:0.7rem 0;border-radius:10px;overflow:hidden;}
+.tbl thead tr{background:rgba(14,165,233,0.12);}
+.tbl th{padding:0.5rem 0.85rem;text-align:left;font-weight:700;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--border);}
+.tbl td{padding:0.42rem 0.85rem;border-bottom:1px solid rgba(56,189,248,0.06);color:var(--text2);}
+.tbl tbody tr:hover td{background:rgba(56,189,248,0.04);}
+.tbl tr:last-child td{border-bottom:none;}
+
+/* ── Tip box ── */
+.tip-box{background:rgba(52,211,153,0.06);border:1px solid rgba(52,211,153,0.2);border-radius:14px;padding:1.2rem 1.4rem;margin-top:1.5rem;backdrop-filter:blur(10px);}
+.tip-title{font-weight:700;font-size:0.75rem;color:var(--green);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.7rem;display:flex;align-items:center;gap:0.4rem;}
+.tip-box ol{padding-left:1.3rem;font-size:0.85rem;color:var(--text2);}
+.tip-box ol li{margin-bottom:0.35rem;}
+.tip-box ol li strong{color:var(--green);}
+
+/* ── Badge ── */
+.badge{display:inline-block;font-size:0.63rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.15rem 0.6rem;border-radius:4px;vertical-align:middle;margin-left:0.3rem;}
+.badge.blue{background:rgba(56,189,248,0.12);color:var(--accent);border:1px solid rgba(56,189,248,0.25);}
+.badge.green{background:rgba(52,211,153,0.1);color:var(--green);border:1px solid rgba(52,211,153,0.2);}
+.badge.purple{background:rgba(167,139,250,0.1);color:var(--purple);border:1px solid rgba(167,139,250,0.2);}
+.badge.orange{background:rgba(251,146,60,0.1);color:var(--orange);border:1px solid rgba(251,146,60,0.2);}
+
+/* ── Footer ── */
+footer{text-align:center;padding:2.5rem 1rem 4rem;color:var(--muted);font-size:0.75rem;border-top:1px solid var(--border);position:relative;z-index:1;}
+
+/* ── Divider ── */
+.div{border:none;border-top:1px solid rgba(56,189,248,0.08);margin:1rem 0;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:600px){.hero h1{font-size:1.9rem;}.chapter-title{font-size:1.25rem;}#music-player{max-width:calc(100vw - 3rem);}}
+</style>
+</head>
+<body>
+
+<div class="scan-line"></div>
+<div class="progress-wrap"><div class="progress-bar" id="prog"></div></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+<canvas id="stars"></canvas>
+
+<!-- ── MUSIC PLAYER ── -->
+<div id="music-player">
+  <div class="music-icon" id="disc">💿</div>
+  <div class="music-info">
+    <div class="music-title">33x — Perunggu</div>
+    <div class="music-artist">Album: Memorandum (2022)</div>
+    <div class="music-bars" id="bars">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="music-controls">
+    <button class="music-btn" id="playBtn" onclick="togglePlay()" title="Play/Pause">▶</button>
+    <input type="range" class="vol-slider" id="volSlider" min="0" max="100" value="60" oninput="setVol(this.value)" title="Volume">
+  </div>
+</div>
+
+<!-- Hidden YouTube player -->
+<div id="yt-container" style="position:fixed;bottom:-9999px;left:-9999px;width:1px;height:1px;overflow:hidden;">
+  <div id="yt-player"></div>
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">📐 TKA SMP &nbsp;·&nbsp; Matematika Kelas 7, 8, 9</div>
+  <h1><span class="line1">Kumpulan Rumus</span><span class="line2">Matematika SMP</span></h1>
+  <p class="hero-sub">13 bab lengkap untuk persiapan TKA Pusmendik 2026 — klik tiap topik untuk buka rumusnya</p>
+  <div class="tw-wrap"><span class="tw-text" id="twEl"></span></div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a class="nav-pill" href="#b1">1. Bilangan</a>
+    <a class="nav-pill" href="#b2">2. Aljabar</a>
+    <a class="nav-pill" href="#b3">3. Perbandingan</a>
+    <a class="nav-pill" href="#b4">4. Himpunan</a>
+    <a class="nav-pill" href="#b5">5. Fungsi</a>
+    <a class="nav-pill" href="#b6">6. Garis & Sudut</a>
+    <a class="nav-pill" href="#b7">7. Bangun Datar</a>
+    <a class="nav-pill" href="#b8">8. Bangun Ruang</a>
+    <a class="nav-pill" href="#b9">9. Kesebangunan</a>
+    <a class="nav-pill" href="#b10">10. Transformasi</a>
+    <a class="nav-pill" href="#b11">11. Statistika</a>
+    <a class="nav-pill" href="#b12">12. Peluang</a>
+    <a class="nav-pill" href="#b13">13. Barisan & Deret</a>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ════ BAB 1 ════ -->
+<section class="chapter" id="b1">
+  <div class="chapter-head">
+    <div class="chapter-num">01</div>
+    <div class="chapter-title-wrap"><div class="chapter-klass">Bab Satu</div><div class="chapter-title">Bilangan</div></div>
+  </div>
+
+  <div class="topic-card open">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#38bdf8;background:#38bdf8"></span>Operasi Bilangan Bulat</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <p class="slabel">Penjumlahan & Pengurangan</p>
+      <ul class="rl">
+        <li>$(+)+(+)=(+)$ &nbsp; Contoh: $5+3=8$</li>
+        <li>$(-)+(-)=(-)$ &nbsp; Contoh: $(-5)+(-3)=-8$</li>
+        <li>$(+)+(-)=$ tanda yang lebih besar &nbsp; Contoh: $5+(-3)=2$</li>
+      </ul>
+      <p class="slabel">Perkalian & Pembagian</p>
+      <ul class="rl">
+        <li>$(+)\times(+)=(+)$ &nbsp; dan &nbsp; $(-)\times(-)=(+)$</li>
+        <li>$(+)\times(-)=(-)$ &nbsp; dan &nbsp; $(-)\times(+)=(-)$</li>
+      </ul>
+    </div></div>
+  </div>
+
+  <div class="topic-card">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#7dd3fc;background:#7dd3fc"></span>Bilangan Berpangkat (Eksponen)</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <div class="fbox">$a^m \times a^n = a^{m+n}$</div>
+      <div class="fbox">$\dfrac{a^m}{a^n} = a^{m-n}$</div>
+      <div class="fbox">$(a^m)^n = a^{m \times n}$</div>
+      <div class="fbox">$(a \times b)^n = a^n \times b^n$</div>
+      <div class="fbox teal">$a^0 = 1$ &nbsp; (untuk $a \neq 0$)</div>
+      <div class="fbox teal">$a^{-n} = \dfrac{1}{a^n}$</div>
+      <div class="fbox teal">$a^{\frac{m}{n}} = \sqrt[n]{a^m}$</div>
+      <div class="fbox teal">$\sqrt[n]{a} = a^{\frac{1}{n}}$</div>
+    </div></div>
+  </div>
+
+  <div class="topic-card">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#fb923c;background:#fb923c"></span>Bentuk Akar</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <div class="fbox">$\sqrt{a} \times \sqrt{b} = \sqrt{a \times b}$</div>
+      <div class="fbox">$\dfrac{\sqrt{a}}{\sqrt{b}} = \sqrt{\dfrac{a}{b}}$</div>
+      <div class="fbox">$\sqrt{a^2} = |a|$</div>
+      <div class="fbox">$a\sqrt{b} \pm c\sqrt{b} = (a \pm c)\sqrt{b}$</div>
+      <p class="slabel">Merasionalkan Penyebut</p>
+      <div class="fbox orange">$\dfrac{a}{\sqrt{b}} = \dfrac{a\sqrt{b}}{b}$</div>
+      <div class="fbox orange">$\dfrac{a}{\sqrt{b}+\sqrt{c}} = \dfrac{a(\sqrt{b}-\sqrt{c})}{b-c}$</div>
+      <div class="fbox orange">$\dfrac{a}{\sqrt{b}-\sqrt{c}} = \dfrac{a(\sqrt{b}+\sqrt{c})}{b-c}$</div>
+    </div></div>
+  </div>
+
+  <div class="topic-card">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#a78bfa;background:#a78bfa"></span>Notasi Ilmiah (Bentuk Baku)</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <div class="fbox purple">$a \times 10^n$ &nbsp; dengan $1 \leq a < 10$</div>
+      <ul class="rl">
+        <li>Bilangan besar → pangkat <strong>positif</strong></li>
+        <li>Bilangan kecil/desimal → pangkat <strong>negatif</strong></li>
+      </ul>
+      <p class="slabel">Contoh</p>
+      <ul class="bl">
+        <li>$45.000.000 = 4{,}5 \times 10^7$</li>
+        <li>$0{,}00032 = 3{,}2 \times 10^{-4}$</li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<!-- ════ BAB 2 ════ -->
+<section class="chapter" id="b2">
+  <div class="chapter-head">
+    <div class="chapter-num">02</div>
+    <div class="chapter-title-wrap"><div class="chapter-klass">Bab Dua</div><div class="chapter-title">Aljabar</div></div>
+  </div>
+
+  <div class="topic-card open">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#38bdf8;background:#38bdf8"></span>Operasi Bentuk Aljabar</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <p style="font-size:0.85rem;color:var(--text2);margin-bottom:0.5rem;">Penjumlahan/Pengurangan: hanya <strong>suku sejenis</strong> yang bisa dijumlahkan.</p>
+      <p class="slabel">Perkalian</p>
+      <div class="fbox">$a(b+c) = ab+ac$</div>
+      <div class="fbox">$(a+b)(c+d) = ac+ad+bc+bd$</div>
+      <div class="fbox">$(a+b)^2 = a^2+2ab+b^2$</div>
+      <div class="fbox">$(a-b)^2 = a^2-2ab+b^2$</div>
+      <div class="fbox teal">$(a+b)(a-b) = a^2-b^2$ <span class="badge blue">Penting!</span></div>
+    </div></div>
+  </div>
+
+  <div class="topic-card">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#7dd3fc;background:#7dd3fc"></span>Faktorisasi Aljabar</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <div class="fbox">$ax+ay = a(x+y)$</div>
+      <div class="fbox">$x^2+2xy+y^2 = (x+y)^2$</div>
+      <div class="fbox">$x^2-2xy+y^2 = (x-y)^2$</div>
+      <div class="fbox teal">$x^2-y^2 = (x+y)(x-y)$ <span class="badge blue">Selisih Kuadrat</span></div>
+      <div class="fbox">$x^2+(a+b)x+ab = (x+a)(x+b)$</div>
+    </div></div>
+  </div>
+
+  <div class="topic-card">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#fb923c;background:#fb923c"></span>Persamaan Linear (PLSV & SPLDV)</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <p class="slabel">PLSV — Satu Variabel</p>
+      <div class="fbox">Bentuk: $ax+b=c$ &nbsp;→&nbsp; $x = \dfrac{c-b}{a}$</div>
+      <p class="slabel">SPLDV — Dua Variabel</p>
+      <div class="fbox teal">$\begin{cases}a_1x+b_1y=c_1\\a_2x+b_2y=c_2\end{cases}$</div>
+      <ul class="rl">
+        <li><strong>Substitusi</strong> – Ganti variabel dengan persamaan lain</li>
+        <li><strong>Eliminasi</strong> – Hilangkan salah satu variabel</li>
+        <li><strong>Campuran</strong> – Kombinasi substitusi + eliminasi</li>
+        <li><strong>Grafik</strong> – Cari titik potong dua garis</li>
+      </ul>
+    </div></div>
+  </div>
+
+  <div class="topic-card">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#a78bfa;background:#a78bfa"></span>Persamaan Kuadrat</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <p style="font-size:0.85rem;color:var(--text2);">Bentuk umum: $ax^2+bx+c=0$ &nbsp; ($a \neq 0$)</p>
+      <p class="slabel">Rumus ABC</p>
+      <div class="fbox purple">$$x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$$</div>
+      <p class="slabel">Diskriminan &nbsp; $D = b^2-4ac$</p>
+      <ul class="rl">
+        <li>$D > 0$ : dua akar real <strong>berbeda</strong></li>
+        <li>$D = 0$ : dua akar real <strong>sama</strong></li>
+        <li>$D < 0$ : <strong>tidak ada</strong> akar real</li>
+      </ul>
+      <p class="slabel">Rumus Vieta</p>
+      <div class="fbox gold">$x_1+x_2 = -\dfrac{b}{a}$ &nbsp; (jumlah akar)</div>
+      <div class="fbox gold">$x_1 \cdot x_2 = \dfrac{c}{a}$ &nbsp; (hasil kali akar)</div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ════ BAB 3 ════ -->
+<section class="chapter" id="b3">
+  <div class="chapter-head">
+    <div class="chapter-num">03</div>
+    <div class="chapter-title-wrap"><div class="chapter-klass">Bab Tiga</div><div class="chapter-title">Perbandingan</div></div>
+  </div>
+  <div class="topic-card open">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#38bdf8;background:#38bdf8"></span>Senilai, Berbalik Nilai & Skala</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <p class="slabel">Perbandingan Senilai (x naik → y naik)</p>
+      <div class="fbox">$\dfrac{x_1}{y_1} = \dfrac{x_2}{y_2}$</div>
+      <p class="slabel">Perbandingan Berbalik Nilai (x naik → y turun)</p>
+      <div class="fbox teal">$x_1 \times y_1 = x_2 \times y_2$</div>
+      <p class="slabel">Skala</p>
+      <div class="fbox orange">$$\text{Skala} = \frac{\text{Jarak pada peta}}{\text{Jarak sebenarnya}}$$</div>
+      <p style="font-size:0.83rem;color:var(--text2);margin-top:0.6rem;"><strong>Contoh:</strong> Skala 1:100.000 → 1 cm peta = 1 km nyata</p>
+    </div></div>
+  </div>
+</section>
+
+<!-- ════ BAB 4 ════ -->
+<section class="chapter" id="b4">
+  <div class="chapter-head">
+    <div class="chapter-num">04</div>
+    <div class="chapter-title-wrap"><div class="chapter-klass">Bab Empat</div><div class="chapter-title">Himpunan</div></div>
+  </div>
+  <div class="topic-card open">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#38bdf8;background:#38bdf8"></span>Operasi & Rumus Jumlah Anggota</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <ul class="rl">
+        <li><strong>Irisan</strong> $(A \cap B)$: anggota di $A$ DAN $B$</li>
+        <li><strong>Gabungan</strong> $(A \cup B)$: anggota di $A$ ATAU $B$ atau keduanya</li>
+        <li><strong>Selisih</strong> $(A-B)$: anggota $A$ yang tidak ada di $B$</li>
+        <li><strong>Komplemen</strong> $(A')$: anggota semesta yang tidak ada di $A$</li>
+      </ul>
+      <p class="slabel">Rumus Jumlah Anggota</p>
+      <div class="fbox">$n(A \cup B) = n(A)+n(B)-n(A \cap B)$</div>
+      <div class="fbox teal">$$n(A \cup B \cup C) = n(A)+n(B)+n(C)-n(A \cap B)-n(A \cap C)-n(B \cap C)+n(A \cap B \cap C)$$</div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ════ BAB 5 ════ -->
+<section class="chapter" id="b5">
+  <div class="chapter-head">
+    <div class="chapter-num">05</div>
+    <div class="chapter-title-wrap"><div class="chapter-klass">Bab Lima</div><div class="chapter-title">Fungsi</div></div>
+  </div>
+
+  <div class="topic-card open">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#7dd3fc;background:#7dd3fc"></span>Fungsi Linear</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <div class="fbox">$f(x) = mx+c$ &nbsp; atau &nbsp; $y = mx+c$</div>
+      <ul class="rl">
+        <li>$m$ = gradien (kemiringan garis)</li>
+        <li>$c$ = konstanta (titik potong sumbu-$y$)</li>
+      </ul>
+      <p class="slabel">Gradien melalui 2 titik</p>
+      <div class="fbox teal">$m = \dfrac{y_2-y_1}{x_2-x_1}$</div>
+    </div></div>
+  </div>
+
+  <div class="topic-card">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#a78bfa;background:#a78bfa"></span>Fungsi Kuadrat</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <div class="fbox purple">$f(x) = ax^2+bx+c$</div>
+      <p class="slabel">Titik Puncak & Sumbu Simetri</p>
+      <div class="fbox">$x_p = -\dfrac{b}{2a}$ &nbsp; dan &nbsp; $y_p = -\dfrac{b^2-4ac}{4a}$</div>
+      <div class="fbox teal">Sumbu simetri: $x = -\dfrac{b}{2a}$</div>
+      <p class="slabel">Arah Parabola</p>
+      <ul class="rl">
+        <li>$a > 0$ → terbuka ke <strong>atas</strong> (nilai minimum)</li>
+        <li>$a < 0$ → terbuka ke <strong>bawah</strong> (nilai maksimum)</li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<!-- ════ BAB 6 ════ -->
+<section class="chapter" id="b6">
+  <div class="chapter-head">
+    <div class="chapter-num">06</div>
+    <div class="chapter-title-wrap"><div class="chapter-klass">Bab Enam</div><div class="chapter-title">Garis & Sudut</div></div>
+  </div>
+  <div class="topic-card open">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#fb923c;background:#fb923c"></span>Hubungan Antar Sudut</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <ul class="rl">
+        <li><strong>Berpelurus:</strong> $\alpha + \beta = 180°$</li>
+        <li><strong>Berpenyiku:</strong> $\alpha + \beta = 90°$</li>
+        <li><strong>Bertolak Belakang:</strong> sama besar</li>
+      </ul>
+      <p class="slabel">Sudut pada Garis Sejajar (dipotong transversal)</p>
+      <ul class="rl">
+        <li><strong>Sehadap:</strong> sama besar</li>
+        <li><strong>Dalam Berseberangan:</strong> sama besar</li>
+        <li><strong>Luar Berseberangan:</strong> sama besar</li>
+        <li><strong>Dalam Sepihak:</strong> jumlahnya $180°$</li>
+        <li><strong>Luar Sepihak:</strong> jumlahnya $180°$</li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<!-- ════ BAB 7 ════ -->
+<section class="chapter" id="b7">
+  <div class="chapter-head">
+    <div class="chapter-num">07</div>
+    <div class="chapter-title-wrap"><div class="chapter-klass">Bab Tujuh</div><div class="chapter-title">Bangun Datar</div></div>
+  </div>
+
+  <div class="topic-card open">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#38bdf8;background:#38bdf8"></span>Segitiga & Pythagoras</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <div class="fbox">$\text{Luas} = \dfrac{1}{2} \times \text{alas} \times \text{tinggi}$</div>
+      <div class="fbox">$\text{Keliling} = s_1+s_2+s_3$ &nbsp;|&nbsp; Jumlah sudut $= 180°$</div>
+      <p class="slabel">Teorema Pythagoras</p>
+      <div class="fbox orange">$c^2 = a^2+b^2$ &nbsp; ($c$ = sisi miring) <span class="badge orange">Wajib Hafal</span></div>
+      <p class="slabel">Triple Pythagoras Populer</p>
+      <ul class="bl">
+        <li>$3, 4, 5$ dan kelipatannya: $(6,8,10), (9,12,15)$</li>
+        <li>$5, 12, 13$</li>
+        <li>$8, 15, 17$</li>
+        <li>$7, 24, 25$</li>
+      </ul>
+    </div></div>
+  </div>
+
+  <div class="topic-card">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#7dd3fc;background:#7dd3fc"></span>Segiempat</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <table class="tbl">
+        <thead><tr><th>Bangun</th><th>Luas</th><th>Keliling</th></tr></thead>
+        <tbody>
+          <tr><td>Persegi (s)</td><td>$s^2$</td><td>$4s$</td></tr>
+          <tr><td>Persegi Panjang (p,l)</td><td>$p \times l$</td><td>$2(p+l)$</td></tr>
+          <tr><td>Jajar Genjang (a,t)</td><td>$a \times t$</td><td>$2(a+b)$</td></tr>
+          <tr><td>Trapesium</td><td>$\frac{1}{2}(a+b) \times t$</td><td>jumlah sisi</td></tr>
+          <tr><td>Belah Ketupat (d₁,d₂)</td><td>$\frac{1}{2}d_1 d_2$</td><td>$4s$</td></tr>
+          <tr><td>Layang-layang (d₁,d₂)</td><td>$\frac{1}{2}d_1 d_2$</td><td>$2(a+b)$</td></tr>
+        </tbody>
+      </table>
+    </div></div>
+  </div>
+
+  <div class="topic-card">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#f472b6;background:#f472b6"></span>Lingkaran</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <div class="fbox">$\text{Luas} = \pi r^2$ &nbsp;|&nbsp; $\text{Keliling} = 2\pi r$</div>
+      <p class="slabel">Bagian Lingkaran</p>
+      <div class="fbox pink">$\text{Panjang Busur} = \dfrac{\theta}{360°} \times 2\pi r$</div>
+      <div class="fbox pink">$\text{Luas Juring} = \dfrac{\theta}{360°} \times \pi r^2$</div>
+      <div class="fbox">$\text{Luas Tembereng} = \text{Luas Juring} - \text{Luas Segitiga}$</div>
+      <div class="fbox teal">$\text{Sudut Pusat} = 2 \times \text{Sudut Keliling}$ &nbsp; (busur sama)</div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ════ BAB 8 ════ -->
+<section class="chapter" id="b8">
+  <div class="chapter-head">
+    <div class="chapter-num">08</div>
+    <div class="chapter-title-wrap"><div class="chapter-klass">Bab Delapan</div><div class="chapter-title">Bangun Ruang</div></div>
+  </div>
+
+  <div class="topic-card open">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#38bdf8;background:#38bdf8"></span>Bangun Sisi Datar</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <p class="slabel">Kubus (sisi = $s$)</p>
+      <div class="fbox">$V = s^3$ &nbsp;|&nbsp; $LP = 6s^2$ &nbsp;|&nbsp; Diag. Ruang $= s\sqrt{3}$ &nbsp;|&nbsp; Diag. Sisi $= s\sqrt{2}$</div>
+      <p class="slabel">Balok ($p \times l \times t$)</p>
+      <div class="fbox teal">$V = p \cdot l \cdot t$ &nbsp;|&nbsp; $LP = 2(pl+pt+lt)$ &nbsp;|&nbsp; Diag. Ruang $= \sqrt{p^2+l^2+t^2}$</div>
+      <p class="slabel">Prisma</p>
+      <div class="fbox">$V = \text{Luas Alas} \times t$ &nbsp;|&nbsp; $LP = 2 \times L_\text{alas} + \text{Kel. Alas} \times t$</div>
+      <p class="slabel">Limas</p>
+      <div class="fbox orange">$V = \dfrac{1}{3} \times \text{Luas Alas} \times t$ &nbsp;|&nbsp; $LP = L_\text{alas}+L_\text{selimut}$</div>
+    </div></div>
+  </div>
+
+  <div class="topic-card">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#f472b6;background:#f472b6"></span>Bangun Sisi Lengkung</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <p class="slabel">Tabung ($r$, $t$)</p>
+      <div class="fbox">$V = \pi r^2 t$ &nbsp;|&nbsp; $LP = 2\pi r(r+t)$ &nbsp;|&nbsp; $L_\text{selimut} = 2\pi rt$</div>
+      <p class="slabel">Kerucut ($r$, $t$, $s=\sqrt{r^2+t^2}$)</p>
+      <div class="fbox pink">$V = \dfrac{1}{3}\pi r^2 t$ &nbsp;|&nbsp; $LP = \pi r(r+s)$ &nbsp;|&nbsp; $L_\text{selimut} = \pi rs$</div>
+      <p class="slabel">Bola ($r$)</p>
+      <div class="fbox purple">$V = \dfrac{4}{3}\pi r^3$ &nbsp;|&nbsp; $LP = 4\pi r^2$ <span class="badge purple">Hafal!</span></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ════ BAB 9 ════ -->
+<section class="chapter" id="b9">
+  <div class="chapter-head">
+    <div class="chapter-num">09</div>
+    <div class="chapter-title-wrap"><div class="chapter-klass">Bab Sembilan</div><div class="chapter-title">Kesebangunan & Kekongruenan</div></div>
+  </div>
+  <div class="topic-card open">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#38bdf8;background:#38bdf8"></span>Kesebangunan & Kekongruenan Segitiga</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <p class="slabel">Kesebangunan — faktor skala $k$</p>
+      <div class="fbox">$\dfrac{AB}{PQ} = \dfrac{BC}{QR} = \dfrac{AC}{PR} = k$</div>
+      <ul class="rl">
+        <li>Perbandingan sisi $= k$</li>
+        <li>Perbandingan keliling $= k$</li>
+        <li>Perbandingan luas $= k^2$ <span class="badge blue">Ingat!</span></li>
+      </ul>
+      <p class="slabel">Kekongruenan Segitiga</p>
+      <ul class="rl">
+        <li><strong>S-S-S:</strong> Tiga sisi sama panjang</li>
+        <li><strong>S-Sd-S:</strong> Dua sisi dan sudut apitnya sama</li>
+        <li><strong>Sd-S-Sd:</strong> Dua sudut dan sisi di antaranya sama</li>
+        <li><strong>Sd-Sd-S:</strong> Dua sudut dan satu sisi (bukan apit) sama</li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<!-- ════ BAB 10 ════ -->
+<section class="chapter" id="b10">
+  <div class="chapter-head">
+    <div class="chapter-num">10</div>
+    <div class="chapter-title-wrap"><div class="chapter-klass">Bab Sepuluh</div><div class="chapter-title">Transformasi Geometri</div></div>
+  </div>
+  <div class="topic-card open">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#a78bfa;background:#a78bfa"></span>Translasi, Refleksi, Rotasi, Dilatasi</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <p class="slabel">Translasi (Pergeseran)</p>
+      <div class="fbox purple">$(x,y) \to (x+a, y+b)$ &nbsp; oleh vektor $\binom{a}{b}$</div>
+      <p class="slabel">Refleksi (Pencerminan)</p>
+      <table class="tbl">
+        <thead><tr><th>Sumbu/Garis</th><th>Hasil</th></tr></thead>
+        <tbody>
+          <tr><td>Sumbu-$x$</td><td>$(x,y) \to (x,-y)$</td></tr>
+          <tr><td>Sumbu-$y$</td><td>$(x,y) \to (-x,y)$</td></tr>
+          <tr><td>Garis $y=x$</td><td>$(x,y) \to (y,x)$</td></tr>
+          <tr><td>Garis $y=-x$</td><td>$(x,y) \to (-y,-x)$</td></tr>
+          <tr><td>Titik $O(0,0)$</td><td>$(x,y) \to (-x,-y)$</td></tr>
+        </tbody>
+      </table>
+      <p class="slabel">Rotasi terhadap $O(0,0)$</p>
+      <ul class="rl">
+        <li>$90°$ searah jarum jam: $(x,y) \to (y,-x)$</li>
+        <li>$90°$ berlawanan jarum jam: $(x,y) \to (-y,x)$</li>
+        <li>$180°$: $(x,y) \to (-x,-y)$</li>
+      </ul>
+      <p class="slabel">Dilatasi</p>
+      <div class="fbox teal">$(x,y) \to (kx,ky)$ &nbsp; pusat $O$, faktor skala $k$</div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ════ BAB 11 ════ -->
+<section class="chapter" id="b11">
+  <div class="chapter-head">
+    <div class="chapter-num">11</div>
+    <div class="chapter-title-wrap"><div class="chapter-klass">Bab Sebelas</div><div class="chapter-title">Statistika</div></div>
+  </div>
+
+  <div class="topic-card open">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#38bdf8;background:#38bdf8"></span>Ukuran Pemusatan Data</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <p class="slabel">Mean (Rata-rata)</p>
+      <div class="fbox">$\bar{x} = \dfrac{\sum x_i}{n}$</div>
+      <p class="slabel">Median (Nilai Tengah)</p>
+      <ul class="rl">
+        <li>Data ganjil: nilai ke-$\dfrac{n+1}{2}$</li>
+        <li>Data genap: rata-rata nilai ke-$\dfrac{n}{2}$ dan ke-$\dfrac{n}{2}+1$</li>
+      </ul>
+      <p class="slabel">Modus</p>
+      <p style="font-size:0.85rem;color:var(--text2);">Nilai yang paling sering muncul.</p>
+    </div></div>
+  </div>
+
+  <div class="topic-card">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#7dd3fc;background:#7dd3fc"></span>Ukuran Penyebaran Data</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <div class="fbox">$\text{Jangkauan} = \text{data terbesar} - \text{data terkecil}$</div>
+      <p class="slabel">Kuartil</p>
+      <ul class="rl">
+        <li>$Q_1$ (Bawah): median dari data di bawah median</li>
+        <li>$Q_2$ (Tengah): median dari seluruh data</li>
+        <li>$Q_3$ (Atas): median dari data di atas median</li>
+      </ul>
+      <div class="fbox teal">$IQR = Q_3 - Q_1$ &nbsp; (Jangkauan Interkuartil)</div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ════ BAB 12 ════ -->
+<section class="chapter" id="b12">
+  <div class="chapter-head">
+    <div class="chapter-num">12</div>
+    <div class="chapter-title-wrap"><div class="chapter-klass">Bab Dua Belas</div><div class="chapter-title">Peluang</div></div>
+  </div>
+  <div class="topic-card open">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#fb923c;background:#fb923c"></span>Rumus Peluang</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <div class="fbox orange">$P(A) = \dfrac{n(A)}{n(S)}$ &nbsp; dengan $0 \leq P(A) \leq 1$</div>
+      <ul class="rl">
+        <li>$n(A)$ = banyak kejadian yang diharapkan</li>
+        <li>$n(S)$ = banyak semua kejadian (ruang sampel)</li>
+      </ul>
+      <p class="slabel">Peluang Komplemen</p>
+      <div class="fbox">$P(A') = 1 - P(A)$</div>
+      <p class="slabel">Frekuensi Harapan</p>
+      <div class="fbox teal">$\text{Frekuensi Harapan} = P(A) \times n$</div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ════ BAB 13 ════ -->
+<section class="chapter" id="b13">
+  <div class="chapter-head">
+    <div class="chapter-num">13</div>
+    <div class="chapter-title-wrap"><div class="chapter-klass">Bab Tiga Belas</div><div class="chapter-title">Barisan & Deret</div></div>
+  </div>
+
+  <div class="topic-card open">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#38bdf8;background:#38bdf8"></span>Barisan & Deret Aritmetika</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <p style="font-size:0.85rem;color:var(--text2);">$U_1, U_2, U_3,...$ dengan beda $= b$</p>
+      <p class="slabel">Suku ke-$n$</p>
+      <div class="fbox">$U_n = a+(n-1)b$</div>
+      <p class="slabel">Jumlah $n$ Suku Pertama</p>
+      <div class="fbox teal">$S_n = \dfrac{n}{2}(a+U_n) = \dfrac{n}{2}(2a+(n-1)b)$</div>
+    </div></div>
+  </div>
+
+  <div class="topic-card">
+    <div class="topic-header" onclick="tog(this)">
+      <h3><span class="topic-dot" style="color:#a78bfa;background:#a78bfa"></span>Barisan & Deret Geometri</h3><span class="topic-arrow">▼</span>
+    </div>
+    <div class="topic-body"><div class="topic-content">
+      <p style="font-size:0.85rem;color:var(--text2);">$U_1, U_2, U_3,...$ dengan rasio $= r$</p>
+      <p class="slabel">Suku ke-$n$</p>
+      <div class="fbox">$U_n = a \cdot r^{n-1}$</div>
+      <p class="slabel">Jumlah $n$ Suku</p>
+      <div class="fbox purple">$S_n = \dfrac{a(r^n-1)}{r-1}$ &nbsp; ($r \neq 1$)</div>
+      <p class="slabel">Jumlah Tak Hingga ($|r| < 1$)</p>
+      <div class="fbox gold">$S_\infty = \dfrac{a}{1-r}$</div>
+    </div></div>
+  </div>
+
+  <!-- TIPS -->
+  <div class="tip-box">
+    <div class="tip-title">⭐ Tips Mengerjakan Soal TKA</div>
+    <ol>
+      <li><strong>Baca soal teliti</strong> — pahami apa yang diketahui dan ditanyakan</li>
+      <li><strong>Tulis yang diketahui</strong> — identifikasi variabel dan nilainya</li>
+      <li><strong>Pilih rumus yang tepat</strong> — sesuaikan dengan informasi yang ada</li>
+      <li><strong>Hitung dengan cermat</strong> — perhatikan tanda positif/negatif</li>
+      <li><strong>Periksa jawaban</strong> — masuk akal dengan konteks soal?</li>
+    </ol>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<footer>
+  <p>📐 Kumpulan Rumus Matematika SMP Kelas 7, 8 & 9 &nbsp;·&nbsp; Persiapan TKA Pusmendik 2026</p>
+  <p style="margin-top:0.3rem;">Semangat belajar! Melamban bukanlah hal yang tabu 💙</p>
+</footer>
+
+<!-- YouTube IFrame API -->
+<script>
+var ytPlayer, ytReady = false, isPlaying = false;
+function onYouTubeIframeAPIReady(){
+  ytPlayer = new YT.Player('yt-player',{
+    height:'1',width:'1',
+    videoId:'7RldJyIj9jE',
+    playerVars:{autoplay:0,controls:0,loop:1,playlist:'7RldJyIj9jE',start:0},
+    events:{
+      onReady:function(e){ytReady=true;e.target.setVolume(60);},
+      onStateChange:function(e){
+        if(e.data===YT.PlayerState.ENDED)e.target.playVideo();
+      }
+    }
+  });
+}
+var ytScript=document.createElement('script');
+ytScript.src='https://www.youtube.com/iframe_api';
+document.head.appendChild(ytScript);
+
+function togglePlay(){
+  if(!ytReady)return;
+  if(isPlaying){ytPlayer.pauseVideo();setUIPaused();}
+  else{ytPlayer.playVideo();setUIPlaying();}
+  isPlaying=!isPlaying;
+}
+function setUIPaused(){
+  document.getElementById('playBtn').textContent='▶';
+  document.getElementById('disc').classList.add('paused');
+  document.getElementById('bars').classList.add('paused');
+}
+function setUIPlaying(){
+  document.getElementById('playBtn').textContent='⏸';
+  document.getElementById('disc').classList.remove('paused');
+  document.getElementById('bars').classList.remove('paused');
+}
+function setVol(v){if(ytReady)ytPlayer.setVolume(parseInt(v));}
+</script>
+
+<script>
+/* ── TYPEWRITER ── */
+const phrases=[
+  "13 bab rumus lengkap kelas 7, 8 & 9 📐",
+  "Klik tiap topik untuk buka detail rumusnya!",
+  "Semangat belajar, jangan lupa istirahat ✨"
+];
+let pi=0,ci=0,del=false;
+const tw=document.getElementById('twEl');
+function typeLoop(){
+  const f=phrases[pi];
+  if(!del){tw.textContent=f.slice(0,++ci);if(ci===f.length){del=true;setTimeout(typeLoop,2500);return;}}
+  else{tw.textContent=f.slice(0,--ci);if(ci===0){del=false;pi=(pi+1)%phrases.length;setTimeout(typeLoop,400);return;}}
+  setTimeout(typeLoop,del?28:46);
+}
+setTimeout(typeLoop,1500);
+
+/* ── TOGGLE ── */
+function tog(header){
+  const card=header.closest('.topic-card');
+  const wasOpen=card.classList.contains('open');
+  card.classList.toggle('open',!wasOpen);
+}
+
+/* ── SCROLL REVEAL ── */
+const chapters=document.querySelectorAll('.chapter');
+const revObs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      e.target.style.transitionDelay=`0s`;
+      e.target.classList.add('visible');
+      revObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.07});
+chapters.forEach(c=>revObs.observe(c));
+
+/* ── PROGRESS + SCROLL BTN ── */
+const prog=document.getElementById('prog');
+window.addEventListener('scroll',()=>{
+  const pct=(scrollY/(document.body.scrollHeight-innerHeight))*100;
+  if(prog)prog.style.width=pct+'%';
+  document.getElementById('scrollTop').classList.toggle('show',scrollY>400);
+  // active nav
+  let cur='';
+  document.querySelectorAll('section[id]').forEach(s=>{
+    if(scrollY>=s.offsetTop-100)cur=s.id;
+  });
+  document.querySelectorAll('.nav-pill').forEach(p=>{
+    p.classList.toggle('active',p.getAttribute('href')==='#'+cur);
+  });
+});
+
+/* ── STARS ── */
+const canvas=document.getElementById('stars');
+const ctx=canvas.getContext('2d');
+let stars=[];
+function resizeCanvas(){canvas.width=innerWidth;canvas.height=innerHeight;}
+resizeCanvas();window.addEventListener('resize',resizeCanvas);
+for(let i=0;i<200;i++){
+  stars.push({
+    x:Math.random()*innerWidth,y:Math.random()*innerHeight,
+    r:Math.random()*1.3+0.2,
+    a:Math.random()*0.8+0.15,
+    speed:Math.random()*0.3+0.05,
+    twinkle:Math.random()*Math.PI*2
+  });
+}
+let frame=0;
+function drawStars(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  frame+=0.008;
+  stars.forEach(s=>{
+    s.twinkle+=s.speed*0.05;
+    const alpha=s.a*(0.6+0.4*Math.sin(s.twinkle));
+    ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(${180+Math.floor(75*Math.sin(s.twinkle))},230,255,${alpha})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+drawStars();
+</script>
+</body>
+</html>
